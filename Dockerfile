@@ -16,9 +16,20 @@ RUN apt-get update && \
     curl -fsSL https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/memcached/memcached-1.4.7.tar.gz -o memcached.tar.gz && \ 
     mkdir -p /tmp/memcached && \ 
     tar -xf memcached.tar.gz -C /tmp/memcached --strip 1 && \ 
-    rm memcached.tar.gz && \ 
-    docker-php-ext-configure memcached --with-libevent=/usr/local/lib && \ 
-    docker-php-ext-install memcached #&& \ 
+    ( \
+     cd /tmp/memcached && \
+     phpize && \
+     ./configure && \
+     make && \
+     make install \
+     ) && \
+     rm -r /tmp/memcached && \
+     rm /tmp/memcached.tar.gz && \
+     docker-php-ext-enable memcached
+     
+    #rm memcached.tar.gz && \ 
+    #docker-php-ext-configure memcached --with-libevent=/usr/local/lib && \ 
+    #docker-php-ext-install memcached #&& \ 
     #rm -r /tmp/memcached
     ##pecl install memcached-1.4.7 && \
     ##docker-php-ext-enable memcached-1.4.7 #&& \
