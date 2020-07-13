@@ -20,7 +20,7 @@ RUN apt-get update && \
      cd /tmp/memcached && \
      phpize && \
      ./configure && \
-     make && \
+     make -j$(nproc) && \
      make install \
      ) && \
      rm -r /tmp/memcached && \
