@@ -13,10 +13,12 @@ RUN apt-get update && \
     docker-php-ext-configure /tmp/imagick --with-php-config=/usr/local/bin/php-config && \ 
     docker-php-ext-install /tmp/imagick && \ 
     rm -r /tmp/imagick && \
-    curl -fsSL https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/memcached/memcached-1.4.7.tar.gz -o memcached.tar.gz && \ 
-    mkdir -p /tmp/memcached && \ 
-    tar -xf memcached.tar.gz -C /tmp/memcached --strip-components=1 && \ 
-    rm memcached.tar.gz && \ 
-    docker-php-ext-configure /tmp/memcached --with-libevent=/usr/local/lib && \ 
-    docker-php-ext-install /tmp/memcached && \ 
-    rm -r /tmp/memcached 
+    #curl -fsSL https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/memcached/memcached-1.4.7.tar.gz -o memcached.tar.gz && \ 
+    #mkdir -p /tmp/memcached && \ 
+    #tar -xf memcached.tar.gz -C /tmp/memcached --strip-components=1 && \ 
+    #rm memcached.tar.gz && \ 
+    #docker-php-ext-configure /tmp/memcached --with-libevent=/usr/local/lib && \ 
+    #docker-php-ext-install /tmp/memcached && \ 
+    #rm -r /tmp/memcached
+    pecl install memcached && \
+    docker-php-ext-enable memcached
