@@ -1,6 +1,6 @@
 FROM php:7.3-fpm 
 RUN apt-get update && \ 
-    apt-get -y install libgmp-dev && \ 
+    apt-get -y install libgmp-dev libmemcached-dev && \ 
     docker-php-ext-install gmp && \ 
     apt-get install -y \ 
     libmagickwand-dev --no-install-recommends && \ 
