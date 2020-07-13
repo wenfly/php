@@ -21,4 +21,13 @@ RUN apt-get update && \
     #docker-php-ext-install /tmp/memcached && \ 
     #rm -r /tmp/memcached
     pecl install memcached && \
-    docker-php-ext-enable memcached
+    docker-php-ext-enable memcached && \
+    ##install libmemcached
+    curl -fsSL https://launchpad.net/libmemcached/1.0/1.0.18/+download/libmemcached-1.0.18.tar.gz -o libmemcached.tar.gz && \
+    mkdir -p /tmp/libmemcached && \
+    tar -xf libmemcached.tar.gz -C /tmp/libmemcached && \
+    docker-php-ext-configure /tmp/libmemcached --prefix=/usr/local/libmemcached --with-memcached && \
+    docker-php-ext-install  /tmp/libmemcached && \
+    rm -r libmemcached.tar.gz && /tmp/libmemcached
+    
+    
