@@ -68,6 +68,7 @@ RUN apt-get install libncurses-dev \
     && tar -xf libedit.tar.gz -C /tmp/libedit  \ 
     && rm -r libedit.tar.gz  \
     && cd /tmp/libedit/libedit-20181209-3.1 \
+    && ./configure \
     && make \
 ##    docker-php-ext-configure /tmp/libedit  --with-php-config=/usr/local/bin/php-config && \ 
 ##    docker-php-ext-install -j$(nproc) /tmp/libedit && \ 
