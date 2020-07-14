@@ -18,7 +18,7 @@ RUN apt-get update && \
     tar -xf memcached.tar.gz -C /tmp/memcached --strip 1 && \ 
     ( \
      cd /tmp/memcached && \
-     phpize  && \
+     /usr/local/bin/phpize  && \
      ./configure && \
      make -j$(nproc) && \
      make install \
