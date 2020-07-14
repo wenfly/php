@@ -40,6 +40,6 @@ RUN apt-get update && \
     #docker-php-ext-configure /tmp/libmemcached --prefix=/usr/local/libmemcached --with-memcached && \
     #docker-php-ext-install  /tmp/libmemcached && \
     #rm -r libmemcached.tar.gz && /tmp/libmemcached
-    ###
+   
     
     
