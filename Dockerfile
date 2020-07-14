@@ -52,9 +52,9 @@ RUN  curl -fsSL http://www.xunsearch.com/scws/down/scws-1.2.3.tar.bz2 -o scws.ta
      make && make install && \
      cd ./phpext/ && \
      /usr/local/bin/phpize && \
-     ) && \
-     docker-php-ext-configure /home/scws-1.2.3/phpext --with-php-config=/usr/local/bin/php-config && \
-     docker-php-ext-install /home/scws-1.2.3/phpext
+     ) \
+     && docker-php-ext-configure /home/scws-1.2.3/phpext --with-php-config=/usr/local/bin/php-config \
+     && docker-php-ext-install /home/scws-1.2.3/phpext
  
  
     
