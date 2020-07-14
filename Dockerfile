@@ -5,7 +5,7 @@ RUN apt-get update && \
     apt-get install -y \ 
     libmagickwand-dev --no-install-recommends && \ 
     #pecl install imagick && \ 
-    #docker-php-ext-enable imagick 
+    ###docker-php-ext-enable imagick 
     curl -fsSL https://pecl.php.net/get/imagick-3.4.3.tgz -o imagick.tar.gz && \ 
     mkdir -p /tmp/imagick && \ 
     tar -xf imagick.tar.gz -C /tmp/imagick --strip-components=1 && \ 
