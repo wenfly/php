@@ -44,6 +44,17 @@ RUN pecl install redis-5.0.0 && docker-php-ext-enable redis
 #    docker-php-ext-configure /tmp/libedit  --with-php-config=/usr/local/bin/php-config && \ 
 #    docker-php-ext-install -j$(nproc) /tmp/libedit && \ 
 #    rm -r /tmp/libedit #&& \
+RUN  curl -fsSL http://www.xunsearch.com/scws/down/scws-1.2.3.tar.bz2 -o scws.tar.gz && \
+     ( \
+     tar -xf scws.tar.gz && \
+     cd scws-1.2.3 && \
+     ./configure --prefix=/usr/local/scws && \
+     make && make install && \
+     cd ./phpext/ && \
+     /usr/local/bin/phpize && \
+     ) && \
+     docker-php-ext-configure /home/scws-1.2.3/phpext --with-php-config=/usr/local/bin/php-config && \
+     docker-php-ext-install /home/scws-1.2.3/phpext
  
  
     
