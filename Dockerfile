@@ -48,10 +48,12 @@ RUN apt-get update && \
     RUN curl -fsSL http://thrysoee.dk/editline/libedit-20181209-3.1.tar.gz -o libedit.tar.gz && \
     mkdir -p /tmp/libedit && \ 
     tar -xf libedit.tar.gz -C /tmp/libedit  && \ 
-    rm libedit.tar.gz && \ 
+    rm -r libedit.tar.gz && \ 
     docker-php-ext-configure /tmp/libedit  && \ 
     docker-php-ext-install /tmp/libedit && \ 
     rm -r /tmp/libedit #&& \
+    #安装redis
+    RUN pecl install redis-3.2.6 && docker-php-ext-enable redis
  
     
     
