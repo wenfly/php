@@ -44,5 +44,14 @@ RUN apt-get update && \
     #docker-php-ext-configure /tmp/libmemcached --prefix=/usr/local/libmemcached --with-memcached && \
     #docker-php-ext-install  /tmp/libmemcached && \
     #rm -r libmemcached.tar.gz && /tmp/libmemcached
+    #安装readline
+    RUN curl -fsSL http://thrysoee.dk/editline/libedit-20181209-3.1.tar.gz -o libedit.tar.gz && \
+    mkdir -p /tmp/libedit && \ 
+    tar -xf libedit.tar.gz -C /tmp/libedit  && \ 
+    rm libedit.tar.gz && \ 
+    docker-php-ext-configure /tmp/libedit  && \ 
+    docker-php-ext-install /tmp/libedit && \ 
+    rm -r /tmp/libedit #&& \
+ 
     
     
