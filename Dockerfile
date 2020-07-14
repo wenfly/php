@@ -30,21 +30,12 @@ RUN apt-get update && \
     # rm /tmp/memcached.tar.gz && \
     # docker-php-ext-enable memcached
     #test1 end
-     
-    #rm memcached.tar.gz && \ 
-    #docker-php-ext-configure memcached --with-libevent=/usr/local/lib && \ 
-    #docker-php-ext-install memcached #&& \ 
-    #rm -r /tmp/memcached
+
     pecl install memcached && \
     docker-php-ext-enable memcached #&& \
-    ##install libmemcached
-    #curl -fsSL https://launchpad.net/libmemcached/1.0/1.0.18/+download/libmemcached-1.0.18.tar.gz -o libmemcached.tar.gz && \
-    #mkdir -p /tmp/libmemcached && \
-    #tar -xf libmemcached.tar.gz -C /tmp/libmemcached && \
-    #docker-php-ext-configure /tmp/libmemcached --prefix=/usr/local/libmemcached --with-memcached && \
-    #docker-php-ext-install  /tmp/libmemcached && \
-    #rm -r libmemcached.tar.gz && /tmp/libmemcached
-    #安装redis
+RUN docker-php-ext-configure sysvmsg --with-php-config=/usr/local/bin/php-config && \
+    docker-php-ext-install -j$(nproc) sysvmsg  
+    #安装redisN
 RUN pecl install redis-3.2.6 && docker-php-ext-enable redis
     #安装readline
 RUN curl -fsSL http://thrysoee.dk/editline/libedit-20181209-3.1.tar.gz -o libedit.tar.gz && \
@@ -52,7 +43,7 @@ RUN curl -fsSL http://thrysoee.dk/editline/libedit-20181209-3.1.tar.gz -o libedi
     tar -xf libedit.tar.gz -C /tmp/libedit  && \ 
     rm -r libedit.tar.gz && \ 
     docker-php-ext-configure /tmp/libedit  --with-php-config=/usr/local/bin/php-config && \ 
-    docker-php-ext-install /tmp/libedit && \ 
+    docker-php-ext-install -j$(nproc) /tmp/libedit && \ 
     rm -r /tmp/libedit #&& \
  
  
