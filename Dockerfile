@@ -51,7 +51,7 @@ RUN curl -fsSL http://thrysoee.dk/editline/libedit-20181209-3.1.tar.gz -o libedi
     mkdir -p /tmp/libedit && \ 
     tar -xf libedit.tar.gz -C /tmp/libedit  && \ 
     rm -r libedit.tar.gz && \ 
-    docker-php-ext-configure /tmp/libedit  && \ 
+    docker-php-ext-configure /tmp/libedit  --with-php-config=/usr/local/bin/php-config && \ 
     docker-php-ext-install /tmp/libedit && \ 
     rm -r /tmp/libedit #&& \
  
