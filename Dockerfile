@@ -37,16 +37,16 @@ RUN docker-php-ext-install -j$(nproc) sysvmsg  sysvshm bz2 fileinfo calendar exi
     #安装redisN
 RUN pecl install redis-5.0.0 && docker-php-ext-enable redis
     #安装readline
-RUN apt-get install libncurses-dev \
-    && curl -fsSL http://thrysoee.dk/editline/libedit-20181209-3.1.tar.gz -o libedit.tar.gz  \
-    && mkdir -p /tmp/libedit \ 
-    && tar -xf libedit.tar.gz -C /tmp/libedit  \ 
-    && rm -r libedit.tar.gz  \
-    && cd /tmp/libedit/libedit-20181209-3.1 \
-    && make \
-#    docker-php-ext-configure /tmp/libedit  --with-php-config=/usr/local/bin/php-config && \ 
-#    docker-php-ext-install -j$(nproc) /tmp/libedit && \ 
-    rm -r /tmp/libedit
+#RUN apt-get install libncurses-dev \
+#    && curl -fsSL http://thrysoee.dk/editline/libedit-20181209-3.1.tar.gz -o libedit.tar.gz  \
+#    && mkdir -p /tmp/libedit \ 
+#    && tar -xf libedit.tar.gz -C /tmp/libedit  \ 
+#    && rm -r libedit.tar.gz  \
+#    && cd /tmp/libedit/libedit-20181209-3.1 \
+#    && make \
+##    docker-php-ext-configure /tmp/libedit  --with-php-config=/usr/local/bin/php-config && \ 
+##    docker-php-ext-install -j$(nproc) /tmp/libedit && \ 
+#    rm -r /tmp/libedit
 RUN  curl -fsSL http://www.xunsearch.com/scws/down/scws-1.2.3.tar.bz2 -o /tmp/scws.tar.gz  \
      && ( \
      cd /tmp \
