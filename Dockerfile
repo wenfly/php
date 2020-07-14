@@ -13,12 +13,14 @@ RUN apt-get update && \
     docker-php-ext-configure /tmp/imagick --with-php-config=/usr/local/bin/php-config && \ 
     docker-php-ext-install /tmp/imagick && \ 
     rm -r /tmp/imagick && \
+    #memcached
+    echo "memcached................" && \
     curl -fsSL https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/memcached/memcached-1.4.7.tar.gz -o memcached.tar.gz && \ 
     mkdir -p /tmp/memcached && \ 
     tar -xf memcached.tar.gz -C /tmp/memcached --strip 1 && \ 
     ( \
      cd /tmp/memcached && \
-     /usr/local/bin/phpize  && \
+     #/usr/local/bin/phpize  && \
      ./configure && \
      make -j$(nproc) && \
      make install \
