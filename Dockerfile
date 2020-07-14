@@ -30,21 +30,20 @@ RUN apt-get update && \
     # rm /tmp/memcached.tar.gz && \
     # docker-php-ext-enable memcached
     #test1 end
-
     pecl install memcached && \
     docker-php-ext-enable memcached #&& \
-RUN docker-php-ext-configure sysvmsg --with-php-config=/usr/local/bin/php-config && \
-    docker-php-ext-install -j$(nproc) sysvmsg  
+#RUN docker-php-ext-configure sysvmsg --with-php-config=/usr/local/bin/php-config && \
+RUN docker-php-ext-install -j$(nproc) sysvmsg  sysvshm bz2 fileinfo calendar exif
     #安装redisN
-RUN pecl install redis-3.2.6 && docker-php-ext-enable redis
+RUN pecl install redis-5.0.0 && docker-php-ext-enable redis
     #安装readline
-RUN curl -fsSL http://thrysoee.dk/editline/libedit-20181209-3.1.tar.gz -o libedit.tar.gz && \
-    mkdir -p /tmp/libedit && \ 
-    tar -xf libedit.tar.gz -C /tmp/libedit  && \ 
-    rm -r libedit.tar.gz && \ 
-    docker-php-ext-configure /tmp/libedit  --with-php-config=/usr/local/bin/php-config && \ 
-    docker-php-ext-install -j$(nproc) /tmp/libedit && \ 
-    rm -r /tmp/libedit #&& \
+#RUN curl -fsSL http://thrysoee.dk/editline/libedit-20181209-3.1.tar.gz -o libedit.tar.gz && \
+#    mkdir -p /tmp/libedit && \ 
+#    tar -xf libedit.tar.gz -C /tmp/libedit  && \ 
+#    rm -r libedit.tar.gz && \ 
+#    docker-php-ext-configure /tmp/libedit  --with-php-config=/usr/local/bin/php-config && \ 
+#    docker-php-ext-install -j$(nproc) /tmp/libedit && \ 
+#    rm -r /tmp/libedit #&& \
  
  
     
