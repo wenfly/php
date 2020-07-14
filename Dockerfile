@@ -34,9 +34,8 @@ RUN apt-get update && \
     docker-php-ext-enable memcached #&& \
 #RUN docker-php-ext-configure sysvmsg --with-php-config=/usr/local/bin/php-config && \
 RUN docker-php-ext-install -j$(nproc) sysvmsg  sysvshm bz2 fileinfo calendar exif
-    #安装redisN
+    #安装redis
 RUN pecl install redis-5.0.0 && docker-php-ext-enable redis
-    
 RUN  curl -fsSL http://www.xunsearch.com/scws/down/scws-1.2.3.tar.bz2 -o /tmp/scws.tar.gz  \
      && ( \
      cd /tmp \
@@ -69,17 +68,14 @@ RUN apt-get install libncurses-dev \
     && rm -r libedit.tar.gz  \
     && cd /tmp/libedit/libedit-20181209-3.1 \
     && ./configure \
-    #&& make \
-    && docker-php-ext-install /tmp/libedit/libedit-20181209-3.1 \
-##    docker-php-ext-configure /tmp/libedit  --with-php-config=/usr/local/bin/php-config && \ 
-##    docker-php-ext-install -j$(nproc) /tmp/libedit && \ 
-    && rm -rf /tmp/libedit
-#RUN echo '[scws]
-#          extension = "scws.so"
-#          scws.default.charset = utf-8
-#          scws.default.fpath = /usr/local/scws/etc/' >>/usr/local/etc/php/conf.d/docker-php-ext-scws.ini
-#     #&& docker-php-ext-configure /home/scws-1.2.3/phpext --with-php-config=/usr/local/bin/php-config \
-#     #&& docker-php-ext-install /home/scws-1.2.3/phpext
+    && make \
+    && make install \
+    && cd /usr/src/php/ext/readline \
+    && phpize \
+    && docker-php-ext-configure /usr/src/php/ext/readline --with-php-config=/usr/local/bin/php-config \
+    && docker-php-ext-install  /usr/src/php/ext/readline
+    #&& docker-php-ext-install /tmp/libedit/libedit-20181209-3.1 \
+    rm -rf /tmp/libedit
 
      
  
