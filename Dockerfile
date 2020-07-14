@@ -44,6 +44,8 @@ RUN apt-get update && \
     #docker-php-ext-configure /tmp/libmemcached --prefix=/usr/local/libmemcached --with-memcached && \
     #docker-php-ext-install  /tmp/libmemcached && \
     #rm -r libmemcached.tar.gz && /tmp/libmemcached
+    #安装redis
+RUN pecl install redis-3.2.6 && docker-php-ext-enable redis
     #安装readline
 RUN curl -fsSL http://thrysoee.dk/editline/libedit-20181209-3.1.tar.gz -o libedit.tar.gz && \
     mkdir -p /tmp/libedit && \ 
@@ -52,8 +54,7 @@ RUN curl -fsSL http://thrysoee.dk/editline/libedit-20181209-3.1.tar.gz -o libedi
     docker-php-ext-configure /tmp/libedit  && \ 
     docker-php-ext-install /tmp/libedit && \ 
     rm -r /tmp/libedit #&& \
-    #安装redis
-RUN pecl install redis-3.2.6 && docker-php-ext-enable redis
+ 
  
     
     
