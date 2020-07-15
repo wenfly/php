@@ -79,7 +79,19 @@ RUN apt-get install libncurses-dev \
     ##&& docker-php-ext-install /tmp/libedit/libedit-20181209-3.1 \
     && rm -rf /tmp/libedit \
     && rm -rf /usr/src/php-7.3.20
-
+RUN apt-get install wget \
+    && wget https://github.com/wenfly/soft/raw/master/snowflake-master.tar.gz \
+    && tar -xf snowflake-master.tar.gz -C /tmp/ \
+    && rm -rf snowflake-master.tar.gz \
+    && cd /tmp/snowflake-master \
+    && phpize \
+    && docker-php-ext-configure /tmp/snowflake-master --with-php-config=/usr/local/bin/php-config \
+    && docker-php-ext-install /tmp/snowflake-master \
+    && echo '\n\
+        [snowflake] \n\
+        extension = "snowflake.so" \n\
+        snowflake.node = 1' >/usr/local/etc/php/conf.d/docker-php-ext-snowflake.ini \
+    && rm -rf /tmp/snowflake-master
      
  
     
