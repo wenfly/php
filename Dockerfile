@@ -14,7 +14,6 @@ RUN apt-get update && \
     docker-php-ext-install /tmp/imagick && \ 
     rm -r /tmp/imagick && \
     #memcached
-    echo "memcached................" && \
     #test1
     #curl -fsSL https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/memcached/memcached-1.4.7.tar.gz -o memcached.tar.gz && \ 
     #mkdir -p /tmp/memcached && \ 
