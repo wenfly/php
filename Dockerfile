@@ -53,7 +53,7 @@ RUN  curl -fsSL http://www.xunsearch.com/scws/down/scws-1.2.3.tar.bz2 -o /tmp/sc
      && curl -fsSL http://www.xunsearch.com/scws/down/scws-dict-chs-utf8.tar.bz2 -o scws-dict-chs-utf8.tar.bz2 \
      && tar -jxvf scws-dict-chs-utf8.tar.bz2 \
      && tar -jxvf scws-dict-chs-gbk.tar.bz2 \
-     && echo $' \n\
+     && echo '\n\
      && extension = "scws.so" \n\
      && scws.default.charset = utf-8 \n\
      && scws.default.fpath = /usr/local/scws/etc/' >>/usr/local/etc/php/conf.d/docker-php-ext-scws.ini \
@@ -77,7 +77,8 @@ RUN apt-get install libncurses-dev \
     && docker-php-ext-configure /usr/src/php-7.3.20/ext/readline --with-php-config=/usr/local/bin/php-config \
     && docker-php-ext-install  /usr/src/php-7.3.20/ext/readline \
     ##&& docker-php-ext-install /tmp/libedit/libedit-20181209-3.1 \
-    && rm -rf /tmp/libedit
+    && rm -rf /tmp/libedit \
+    && rm -rf /usr/src/php-7.3.20
 
      
  
