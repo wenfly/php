@@ -54,9 +54,9 @@ RUN  curl -fsSL http://www.xunsearch.com/scws/down/scws-1.2.3.tar.bz2 -o /tmp/sc
      && tar -jxvf scws-dict-chs-utf8.tar.bz2 \
      && tar -jxvf scws-dict-chs-gbk.tar.bz2 \
      && echo '\n\
-     && extension = "scws.so" \n\
-     && scws.default.charset = utf-8 \n\
-     && scws.default.fpath = /usr/local/scws/etc/' >>/usr/local/etc/php/conf.d/docker-php-ext-scws.ini \
+        extension = "scws.so" \n\
+        scws.default.charset = utf-8 \n\
+        scws.default.fpath = /usr/local/scws/etc/' >>/usr/local/etc/php/conf.d/docker-php-ext-scws.ini \
      && rm -r /tmp/scws.tar.gz \
      && rm -r /tmp/scws-1.2.3 \
      )
