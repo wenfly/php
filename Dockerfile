@@ -70,10 +70,12 @@ RUN apt-get install libncurses-dev \
     && ./configure \
     && make \
     && make install \
+    && tar -xf /usr/src/php.tar.xz -C /usr/src/ \
+    && cd /usr/src/php-7.3.20/ext/readline \
     #&& cd /usr/src/php/ext/readline \
-    #&& phpize \
-    #&& docker-php-ext-configure /usr/src/php/ext/readline --with-php-config=/usr/local/bin/php-config \
-    #&& docker-php-ext-install  /usr/src/php/ext/readline \
+    && phpize \
+    && docker-php-ext-configure /usr/src/php-7.3.20/ext/readline --with-php-config=/usr/local/bin/php-config \
+    && docker-php-ext-install  /usr/src/php-7.3.20/ext/readline \
     ##&& docker-php-ext-install /tmp/libedit/libedit-20181209-3.1 \
     && rm -rf /tmp/libedit
 
