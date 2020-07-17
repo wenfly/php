@@ -85,10 +85,10 @@ RUN wget https://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.16.tar.gz \
     && make \
     && make install \
     && rm -rf /tmp/libiconv-1.16 \
-    && wget http://sphinxsearch.com/files/sphinx-2.2.11-release.tar.gz \
+    && curl -fsSL http://sphinxsearch.com/files/sphinx-2.2.11-release.tar.gz -o sphinx-2.2.11-release.tar.gz \
     && tar -xf sphinx-2.2.11-release.tar.gz -C /tmp/ \
     && rm -rf sphinx-2.2.11-release.tar.gz \
-    && cd /tmp/sphinx-2.2.11-release \
+    && cd /tmp/sphinx-2.2.11-release/ \
     && ./configure --prefix=/usr/local/sphinx \
     && sed -i 's%LIBS = -lexpat -ldl -lm -lz  -L/usr/local/lib -lrt  -lpthread%LIBS = -lexpat -ldl -lm -liconv -lz  -L/usr/local/lib -lrt  -lpthread%g' src/Makefile \
     && make \
