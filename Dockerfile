@@ -89,7 +89,7 @@ RUN curl -fsSL http://sphinxsearch.com/files/sphinx-2.2.11-release.tar.gz -o sph
     && tar -xf sphinx-2.2.11-release.tar.gz -C /tmp/ \
     && rm -rf sphinx-2.2.11-release.tar.gz \
     && cd /tmp/sphinx-2.2.11-release/ \
-    && ./configure --prefix=/usr/local/sphinx \
+    && ./configure --prefix=/usr/local/sphinx --with-mysql=/usr/local/mysql \
     && sed -i 's%LIBS = -lexpat -ldl -lm -lz  -L/usr/local/lib -lrt  -lpthread%LIBS = -lexpat -ldl -lm -liconv -lz  -L/usr/local/lib -lrt  -lpthread%g' src/Makefile \
     && make \
     && make install \
