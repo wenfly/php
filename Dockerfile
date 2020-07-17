@@ -14,24 +14,8 @@ RUN apt-get update && \
     docker-php-ext-install /tmp/imagick && \ 
     rm -r /tmp/imagick && \
     #memcached
-    #test1
-    #curl -fsSL https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/memcached/memcached-1.4.7.tar.gz -o memcached.tar.gz && \ 
-    #mkdir -p /tmp/memcached && \ 
-    #tar -xf memcached.tar.gz -C /tmp/memcached --strip 1 && \ 
-    #( \
-    # cd /tmp/memcached && \
-    # #/usr/local/bin/phpize  && \
-    # ./configure && \
-    # make -j$(nproc) && \
-    # make install \
-    # ) && \
-    # rm -r /tmp/memcached && \
-    # rm /tmp/memcached.tar.gz && \
-    # docker-php-ext-enable memcached
-    #test1 end
     pecl install memcached && \
-    docker-php-ext-enable memcached #&& \
-#RUN docker-php-ext-configure sysvmsg --with-php-config=/usr/local/bin/php-config && \
+    docker-php-ext-enable memcached
 RUN docker-php-ext-install -j$(nproc) sysvmsg  sysvshm bz2 fileinfo calendar exif
     #安装redis
 RUN pecl install redis-5.0.0 && docker-php-ext-enable redis
@@ -91,7 +75,14 @@ RUN apt-get -y install wget \
         extension = "snowflake.so" \n\
         snowflake.node = 1' >/usr/local/etc/php/conf.d/docker-php-ext-snowflake.ini \
     && rm -rf /tmp/snowflake-master
-     
+    #安装sphinx
+RUN wget https://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.16.tar.gz \
+    && tar -xf libiconv-1.16.tar.gz \
+    && cd libiconv-1.16 \
+    && sed -i -e '/gets is a security/d' srclib/stdio.in.h \
+    && ./configure --prefix=/usr/local \
+    && make \
+    && make install
  
     
     
