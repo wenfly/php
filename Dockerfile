@@ -86,7 +86,7 @@ RUN wget https://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.16.tar.gz \
     && make install \
     && rm -rf /tmp/libiconv-1.16 \
     && wget http://sphinxsearch.com/files/sphinx-2.2.11-release.tar.gz \
-    && tar -xf sphinx-2.2.11-release.tar.gz -C /tmp \
+    && tar -xf sphinx-2.2.11-release.tar.gz -C /tmp/ \
     && rm -rf sphinx-2.2.11-release.tar.gz \
     && cd /tmp/sphinx-2.2.11-release \
     && ./configure --prefix=/usr/local/sphinx \
