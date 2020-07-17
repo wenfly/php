@@ -77,12 +77,24 @@ RUN apt-get -y install wget \
     && rm -rf /tmp/snowflake-master
     #安装sphinx
 RUN wget https://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.16.tar.gz \
-    && tar -xf libiconv-1.16.tar.gz \
+    && tar -xf libiconv-1.16.tar.gz -C /tmp  \
+    && rm -rf libiconv-1.16.tar.gz
     && cd libiconv-1.16 \
     && sed -i -e '/gets is a security/d' srclib/stdio.in.h \
     && ./configure --prefix=/usr/local \
     && make \
-    && make install
+    && make install \
+    && rm -rf /tmp/libiconv-1.16 \
+    && wget http://sphinxsearch.com/files/sphinx-2.2.11-release.tar.gz \
+    && tar -xf sphinx-2.2.11-release.tar.gz -C /tmp \
+    && rm -rf sphinx-2.2.11-release.tar.gz \
+    && cd /tmp/sphinx-2.2.11-release \
+    && ./configure --prefix=/usr/local/sphinx \
+    && sed -i 's%LIBS = -lexpat -ldl -lm -lz  -L/usr/local/lib -lrt  -lpthread%LIBS = -lexpat -ldl -lm -liconv -lz  -L/usr/local/lib -lrt  -lpthread%g' src/Makefile \
+    && make \
+    && make install \
+    && cp  /usr/local/sphinx/etc/sphinx-min.conf.dist  /usr/local/sphinx/etc/sphinx.conf \
+    && rm -rf /tmp/sphinx-2.2.11-release
  
     
     
