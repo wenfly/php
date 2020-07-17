@@ -78,7 +78,7 @@ RUN apt-get -y install wget \
     #安装sphinx
 RUN wget https://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.16.tar.gz \
     && tar -xf libiconv-1.16.tar.gz -C /tmp  \
-    && rm -rf libiconv-1.16.tar.gz
+    && rm -rf libiconv-1.16.tar.gz \
     && cd libiconv-1.16 \
     && sed -i -e '/gets is a security/d' srclib/stdio.in.h \
     && ./configure --prefix=/usr/local \
