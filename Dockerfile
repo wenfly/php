@@ -85,7 +85,8 @@ RUN wget https://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.16.tar.gz \
     && make \
     && make install \
     && rm -rf /tmp/libiconv-1.16
-RUN curl -fsSL http://sphinxsearch.com/files/sphinx-2.2.11-release.tar.gz -o sphinx-2.2.11-release.tar.gz \
+RUN apt-get install mysql-devel \
+    && curl -fsSL http://sphinxsearch.com/files/sphinx-2.2.11-release.tar.gz -o sphinx-2.2.11-release.tar.gz \
     && tar -xf sphinx-2.2.11-release.tar.gz -C /tmp/ \
     && rm -rf sphinx-2.2.11-release.tar.gz \
     && cd /tmp/sphinx-2.2.11-release/api/libsphinxclient \
