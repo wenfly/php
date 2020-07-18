@@ -75,7 +75,7 @@ RUN apt-get -y install wget \
         extension = "snowflake.so" \n\
         snowflake.node = 1' >/usr/local/etc/php/conf.d/docker-php-ext-snowflake.ini \
     && rm -rf /tmp/snowflake-master
-    #安装sphinx
+    ###安装sphinx
 RUN wget https://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.16.tar.gz \
     && tar -xf libiconv-1.16.tar.gz -C /tmp  \
     && rm -rf libiconv-1.16.tar.gz \
