@@ -44,7 +44,7 @@ RUN  curl -fsSL http://www.xunsearch.com/scws/down/scws-1.2.3.tar.bz2 -o /tmp/sc
      && rm -r /tmp/scws-1.2.3 \
      )
 #安装readline
-RUN apt-get install libncurses-dev \
+RUN apt-get -y install libncurses-dev \
     && curl -fsSL http://thrysoee.dk/editline/libedit-20181209-3.1.tar.gz -o libedit.tar.gz  \
     && mkdir -p /tmp/libedit \ 
     && tar -xf libedit.tar.gz -C /tmp/libedit  \ 
@@ -85,7 +85,7 @@ RUN wget https://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.16.tar.gz \
     && make \
     && make install \
     && rm -rf /tmp/libiconv-1.16
-RUN apt-get install default-mysql-client \
+RUN apt-get -y install default-mysql-client \
     && curl -fsSL http://sphinxsearch.com/files/sphinx-2.2.11-release.tar.gz -o sphinx-2.2.11-release.tar.gz \
     && tar -xf sphinx-2.2.11-release.tar.gz -C /tmp/ \
     && rm -rf sphinx-2.2.11-release.tar.gz \
@@ -101,6 +101,7 @@ RUN apt-get install default-mysql-client \
     && cp  /usr/local/sphinx/etc/sphinx-min.conf.dist  /usr/local/sphinx/etc/sphinx.conf \
     && cd \
     && rm -rf /tmp/sphinx-2.2.11-release
+    ##apt-get clean
  
     
     
